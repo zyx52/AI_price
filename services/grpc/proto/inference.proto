@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package pricing.inference.v1;
+
+message PricingRequest {
+  string date = 1;
+  string weather = 2;
+  double temperature = 3;
+  double rainfall = 4;
+  map<string, double> competitor_prices = 5;
+  string day_type = 6;
+  double prev_price = 7;
+}
+
+message PricingDecision {
+  string date = 1;
+  double recommended_price = 2;
+  double predicted_visitors = 3;
+  double predicted_revenue = 4;
+  double load_rate = 5;
+  double confidence = 6;
+  string reasoning = 7;
+  double visitors_p10 = 8;
+  double visitors_p50 = 9;
+  double visitors_p90 = 10;
+  double uncertainty_spread = 11;
+  bool fallback_mode = 12;
+  bool conservative_by_uncertainty = 13;
+}
+
+message QuantilePoint {
+  double price = 1;
+  double p10_visitors = 2;
+  double p50_visitors = 3;
+  double p90_visitors = 4;
+  double uncertainty_spread = 5;
+}
+
+message DecideWithQuantilesResponse {
+  PricingDecision decision = 1;
+  repeated QuantilePoint demand_curve_quantiles = 2;
+}
+
+service PricingInference {
+  rpc Decide(PricingRequest) returns (PricingDecision);
+  rpc DecideWithQuantiles(PricingRequest) returns (DecideWithQuantilesResponse);
+}
