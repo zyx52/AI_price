@@ -1,0 +1,228 @@
+{
+  "ensemble_metrics": {
+    "ensemble_mape": 8.100551235547057,
+    "ensemble_mae": 1491.7251927234363,
+    "weights": {
+      "lightgbm": 0.4535306336012821,
+      "xgboost": 0.45335160740732183,
+      "prophet": 0.09311775899139611
+    }
+  },
+  "ensemble_individual": {
+    "lightgbm": {
+      "mape": 8.332413366314725,
+      "mae": 1409.7509058643614,
+      "fold_mapes": [
+        10.292786204311922,
+        7.47370125677282,
+        7.230752637859434
+      ]
+    },
+    "xgboost": {
+      "mape": 8.335703793449266,
+      "mae": 1451.2480844350962,
+      "fold_mapes": [
+        9.751986441475376,
+        7.796747421933577,
+        7.458377516938845
+      ]
+    },
+    "prophet": {
+      "mape": 40.58307582568171,
+      "mae": 5945.481788165896,
+      "fold_mapes": [
+        42.10934609568855,
+        41.46307899606942,
+        38.17680238528717
+      ]
+    }
+  },
+  "decision": {
+    "date": "2026-05-02",
+    "recommended_price": 475,
+    "predicted_visitors": 19954.625401153833,
+    "predicted_revenue": 13743748.245044703,
+    "load_rate": 0.49886563502884584,
+    "decision_weights": {
+      "business_rule": 0.3,
+      "ml": 0.45,
+      "rl": 0.25
+    },
+    "price_breakdown": {
+      "business_rule": 374.0,
+      "ml_optimal": 599.0,
+      "rl_recommended": 377.0
+    },
+    "business_rule_price": 374.0,
+    "ml_optimal_price": 599.0,
+    "rl_recommended_price": 377.0,
+    "day_type": "holiday",
+    "weather": "晴好",
+    "confidence": 0.7658532695978338,
+    "reasoning": "业务规则¥374 (权重30%), ML最优¥599 (权重45%), RL推荐¥377 (权重25%), 综合建议¥475, 预计客流19,955人(负载率49.9%)。",
+    "shift_detection": null,
+    "fallback_mode": false
+  },
+  "time_slot_prices": [
+    {
+      "slot_name": "早鸟场",
+      "start_hour": 7,
+      "end_hour": 11,
+      "price": 450,
+      "ratio_to_base": 0.95,
+      "target_segment": "家庭亲子/老年客群",
+      "expected_visitor_share": 0.25,
+      "reasoning": "早鸟场优惠5%,平衡早高峰压力"
+    },
+    {
+      "slot_name": "正常场",
+      "start_hour": 11,
+      "end_hour": 17,
+      "price": 545,
+      "ratio_to_base": 1.15,
+      "target_segment": "主力客群(全客群)",
+      "expected_visitor_share": 0.5,
+      "reasoning": "节假日主力时段,承担最大客流,溢价提升单客毛利"
+    },
+    {
+      "slot_name": "夜场",
+      "start_hour": 17,
+      "end_hour": 22,
+      "price": 450,
+      "ratio_to_base": 0.95,
+      "target_segment": "年轻客群/情侣",
+      "expected_visitor_share": 0.25,
+      "reasoning": "夜场差异化定价,适合情侣/年轻游客"
+    }
+  ],
+  "channel_strategies": [
+    {
+      "channel": "OTA",
+      "display_price": 475.0,
+      "actual_net_price": 427.5,
+      "commission_rate": 0.1,
+      "value_add": "赠¥20代金券",
+      "allocation_ratio": 0.35,
+      "target_segment": "价格敏感型游客",
+      "marketing_message": "🎢 热门游乐园 · 品质保障 · 立即预订",
+      "reasoning": "流量大、转化高。佣金率10%。"
+    },
+    {
+      "channel": "OFFICIAL",
+      "display_price": 475.0,
+      "actual_net_price": 465.5,
+      "commission_rate": 0.02,
+      "value_add": "积分10倍 + 免费停车",
+      "allocation_ratio": 0.3,
+      "target_segment": "品牌忠诚/会员",
+      "marketing_message": "✨ 官方直销·放心游园 · 下单享双倍积分+专属冷饮券",
+      "reasoning": "毛利最高、数据闭环。佣金率2%。"
+    },
+    {
+      "channel": "OFFLINE",
+      "display_price": 500.0,
+      "actual_net_price": 500.0,
+      "commission_rate": 0.0,
+      "value_add": "赠园内WiFi连接",
+      "allocation_ratio": 0.2,
+      "target_segment": "临时到访游客",
+      "marketing_message": "今日门票发售中 · 即买即入园",
+      "reasoning": "即时成交、无佣金。佣金率0%。"
+    },
+    {
+      "channel": "GROUP",
+      "display_price": 405.0,
+      "actual_net_price": 405.0,
+      "commission_rate": 0.0,
+      "value_add": "15%团体折扣",
+      "allocation_ratio": 0.08,
+      "target_segment": "企业/学校团体",
+      "marketing_message": "企业/学校团建专线 · 15人以上享团体价 + 专属服务",
+      "reasoning": "大宗订单。佣金率0%。"
+    },
+    {
+      "channel": "MEMBER",
+      "display_price": 430.0,
+      "actual_net_price": 421.4,
+      "commission_rate": 0.02,
+      "value_add": "会员9折",
+      "allocation_ratio": 0.07,
+      "target_segment": "年卡/付费会员",
+      "marketing_message": "会员专享折扣 + 优先预约 · 一年畅游",
+      "reasoning": "高LTV、高二消。佣金率2%。"
+    }
+  ],
+  "capacity_plan": {
+    "date": "2026-05-02",
+    "predicted_visitors": 19954,
+    "load_rate": 0.49885,
+    "load_level": "normal",
+    "opening_time": "08:00",
+    "closing_time": "22:00",
+    "total_operating_hours": 14.0,
+    "staff_allocation": {
+      "ride_ops": 50,
+      "food_service": 35,
+      "cleaning": 20,
+      "security": 15,
+      "guest_service": 12,
+      "management": 8
+    },
+    "total_staff": 140,
+    "ride_capacity_adjustment": {
+      "过山车·极速": "正常运营",
+      "摩天轮": "正常",
+      "4D影院": "按常规场次"
+    },
+    "emergency_actions": [],
+    "operational_cost_delta": 5000.0,
+    "reasoning": "预计负载率50%(正常负载)。按基准配置,无需特别调整。"
+  },
+  "backtest_comparison": [
+    {
+      "策略": "历史实际",
+      "总收入(万)": 127464.8,
+      "vs基准": "+0.00%",
+      "总客流": 3509358,
+      "客流vs基准": "+0.00%",
+      "均价": "¥302",
+      "均负载率": "48.7%"
+    },
+    {
+      "策略": "业务规则",
+      "总收入(万)": 127329.2,
+      "vs基准": "-0.11%",
+      "总客流": 3632867,
+      "客流vs基准": "+3.52%",
+      "均价": "¥287",
+      "均负载率": "50.5%"
+    },
+    {
+      "策略": "AI智能定价",
+      "总收入(万)": 130252.1,
+      "vs基准": "+2.19%",
+      "总客流": 2637063,
+      "客流vs基准": "-24.86%",
+      "均价": "¥431",
+      "均负载率": "36.6%"
+    }
+  ],
+  "ab_test": {
+    "experiment_id": "exp_20260501_ai_vs_rule",
+    "start_date": "2025-12-02",
+    "end_date": "2025-12-31",
+    "n_days_a": 21,
+    "n_days_b": 9,
+    "metric_name": "total_revenue",
+    "mean_a": 6895487.34488158,
+    "mean_b": 6758302.026802491,
+    "std_a": 1863941.61751083,
+    "std_b": 1809630.3993654894,
+    "lift_pct": -1.9894941607125054,
+    "t_statistic": -0.18856232616722454,
+    "p_value": 0.8504358624078046,
+    "significant": false,
+    "winner": "tie",
+    "reasoning": "p=0.850 > 0.05,统计上不显著。两组总收入差异-1.99%,需要继续观察或扩大样本。"
+  }
+}
