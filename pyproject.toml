@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-pricing-platform"
+version = "3.1.0"
+description = "AI智能定价票务平台 - 面向乐园运营管理层的动态定价决策系统"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Pricing Team"}
+]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = [
+    "adapters*",
+    "config*",
+    "data*",
+    "engine*",
+    "models*",
+    "monitor*",
+    "services*",
+    "utils*",
+    "api*",
+    "dashboard*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
